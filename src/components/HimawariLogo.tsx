@@ -1,8 +1,14 @@
-export default function HimawariLogo({ className = "w-10 h-10" }: { className?: string }) {
+export default function HimawariLogo({
+  className = "w-10 h-10",
+  spin = false,
+}: {
+  className?: string;
+  spin?: boolean;
+}) {
   return (
     <svg
       viewBox="0 0 100 100"
-      className={className}
+      className={`${className} ${spin ? "logo-spin" : ""}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* Petals */}

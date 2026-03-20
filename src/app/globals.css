@@ -21,7 +21,34 @@ body {
   font-family: "Noto Serif JP", serif;
 }
 
-/* Gold gradient text */
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Navigation glassmorphism on scroll ===== */
+nav {
+  transition: background-color 0.4s ease-in-out,
+              backdrop-filter 0.4s ease-in-out,
+              box-shadow 0.4s ease-in-out;
+}
+
+nav.nav-scrolled {
+  background-color: rgba(255, 253, 247, 0.8) !important;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow: 0 1px 20px rgba(200, 146, 10, 0.08);
+}
+
+/* ===== Gold gradient text ===== */
 .text-gradient-gold {
   background: linear-gradient(135deg, #C8920A 0%, #E8B84A 50%, #C8920A 100%);
   -webkit-background-clip: text;
@@ -29,7 +56,7 @@ body {
   background-clip: text;
 }
 
-/* Elegant section divider */
+/* ===== Section divider ===== */
 .section-divider {
   width: 80px;
   height: 1px;
@@ -37,7 +64,21 @@ body {
   margin: 0 auto;
 }
 
-/* Card hover effect */
+/* ===== Level card hover (lift + gold left border glow) ===== */
+.level-card {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.5s ease-in-out;
+  border-left: 3px solid transparent;
+}
+
+.level-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(200, 146, 10, 0.15);
+  border-left-color: #C8920A;
+}
+
+/* ===== General card hover ===== */
 .card-hover {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -46,7 +87,17 @@ body {
   box-shadow: 0 12px 40px rgba(200, 146, 10, 0.15);
 }
 
-/* Fade in animation */
+/* ===== Floating animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ===== Fade in up (initial load) ===== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -62,7 +113,7 @@ body {
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
-/* Shimmer for hero */
+/* ===== Shimmer gold text ===== */
 @keyframes shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -84,7 +135,49 @@ body {
   animation: shimmer 4s linear infinite;
 }
 
-/* Subtle border style */
+/* ===== Button shine effect ===== */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transition: none;
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  animation: btnShine 0.7s ease-in-out;
+}
+
+@keyframes btnShine {
+  0% { left: -100%; }
+  100% { left: 150%; }
+}
+
+/* ===== Himawari logo petal spin on hover ===== */
+.logo-spin {
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.group:hover .logo-spin,
+.logo-spin:hover {
+  transform: rotate(30deg);
+}
+
+/* ===== Subtle border style ===== */
 .border-gold-subtle {
   border: 0.5px solid rgba(200, 146, 10, 0.25);
 }
